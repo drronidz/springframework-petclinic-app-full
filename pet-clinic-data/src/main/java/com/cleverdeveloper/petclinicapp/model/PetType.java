@@ -7,7 +7,7 @@ Author Name : @ DRRONIDZ
 DATE : 12/21/2021 2:09 PM
 */
 
-public class PetType {
+public class PetType extends BaseEntity{
 
     private String name;
 

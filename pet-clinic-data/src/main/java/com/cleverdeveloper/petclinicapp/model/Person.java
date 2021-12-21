@@ -7,7 +7,7 @@ Author Name : @ DRRONIDZ
 DATE : 12/21/2021 2:06 PM
 */
 
-public class Person {
+public class Person extends BaseEntity{
 
     private String firstName;
     private String lastName;

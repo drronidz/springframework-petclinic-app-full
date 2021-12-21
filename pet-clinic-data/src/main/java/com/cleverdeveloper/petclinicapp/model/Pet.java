@@ -9,7 +9,7 @@ DATE : 12/21/2021 2:09 PM
 
 import java.time.LocalDate;
 
-public class Pet {
+public class Pet extends BaseEntity{
 
     private PetType petType;
     private Owner owner;
