@@ -10,9 +10,11 @@ DATE : 12/21/2021 9:41 PM
 import com.cleverdeveloper.petclinicapp.model.Owner;
 import com.cleverdeveloper.petclinicapp.services.CrudService;
 import com.cleverdeveloper.petclinicapp.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override

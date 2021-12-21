@@ -10,9 +10,11 @@ DATE : 12/21/2021 9:45 PM
 import com.cleverdeveloper.petclinicapp.model.Vet;
 import com.cleverdeveloper.petclinicapp.services.CrudService;
 import com.cleverdeveloper.petclinicapp.services.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VetMapService extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {
