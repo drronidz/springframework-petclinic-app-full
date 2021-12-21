@@ -12,6 +12,7 @@ import java.io.Serializable;
 public class BaseEntity implements Serializable {
 
     // This is a baseEntity for global items ...
+    //
     private Long id;
 
     public Long getId() {
