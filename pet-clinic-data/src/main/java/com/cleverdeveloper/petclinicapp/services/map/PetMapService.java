@@ -9,10 +9,11 @@ DATE : 12/21/2021 9:48 PM
 
 import com.cleverdeveloper.petclinicapp.model.Pet;
 import com.cleverdeveloper.petclinicapp.services.CrudService;
+import com.cleverdeveloper.petclinicapp.services.PetService;
 
 import java.util.Set;
 
-public class PetMapService extends AbstractMapService<Pet, Long> implements CrudService<Pet, Long> {
+public class PetMapService extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override
     public Set<Pet> findAll() {

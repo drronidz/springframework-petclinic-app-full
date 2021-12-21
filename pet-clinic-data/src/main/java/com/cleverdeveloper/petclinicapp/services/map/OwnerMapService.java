@@ -9,10 +9,17 @@ DATE : 12/21/2021 9:41 PM
 
 import com.cleverdeveloper.petclinicapp.model.Owner;
 import com.cleverdeveloper.petclinicapp.services.CrudService;
+import com.cleverdeveloper.petclinicapp.services.OwnerService;
 
 import java.util.Set;
 
-public class OwnerMapService extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
+
+    @Override
+    public Owner findByLastName(String lastName) {
+        return null;
+    }
+
     @Override
     public Set<Owner> findAll() {
         return super.findAll();
