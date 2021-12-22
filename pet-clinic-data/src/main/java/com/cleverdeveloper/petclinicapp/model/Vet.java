@@ -7,11 +7,12 @@ Author Name : @ DRRONIDZ
 DATE : 12/21/2021 2:08 PM
 */
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Vet extends Person{
 
-    private Set<Specialty> specialties;
+    private Set<Specialty> specialties = new HashSet<>();
 
     public Set<Specialty> getSpecialties() {
         return specialties;
