@@ -8,6 +8,7 @@ DATE : 12/21/2021 10:39 PM
 */
 
 import com.cleverdeveloper.petclinicapp.model.Owner;
+import com.cleverdeveloper.petclinicapp.model.Pet;
 import com.cleverdeveloper.petclinicapp.model.PetType;
 import com.cleverdeveloper.petclinicapp.model.Vet;
 import com.cleverdeveloper.petclinicapp.services.OwnerService;
@@ -15,6 +16,8 @@ import com.cleverdeveloper.petclinicapp.services.PetTypeService;
 import com.cleverdeveloper.petclinicapp.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -46,11 +49,33 @@ public class DataLoader implements CommandLineRunner {
         Owner ownerOne = new Owner();
         ownerOne.setFirstName("Tom");
         ownerOne.setLastName("Hardy");
+        ownerOne.setAddress("Wall Street");
+        ownerOne.setCity("New York");
+        ownerOne.setPhone("0779616727");
+
+        Pet tomsPet = new Pet();
+        tomsPet.setPetType(toSaveCat);
+        tomsPet.setOwner(ownerOne);
+        tomsPet.setBirthDate(LocalDate.now());
+        tomsPet.setName("Baguira");
+        ownerOne.getPets().add(tomsPet);
+
         ownerService.save(ownerOne);
 
         Owner ownerTwo = new Owner();
         ownerTwo.setFirstName("Jeff");
         ownerTwo.setLastName("Robinson");
+        ownerTwo.setAddress("Banshee");
+        ownerTwo.setCity("Pennsylvania");
+        ownerTwo.setPhone("0559445022");
+
+        Pet jeffsPet = new Pet();
+        jeffsPet.setPetType(toSaveDog);
+        jeffsPet.setOwner(ownerTwo);
+        jeffsPet.setBirthDate(LocalDate.now());
+        jeffsPet.setName("Rosco");
+        ownerTwo.getPets().add(jeffsPet);
+
         ownerService.save(ownerTwo);
 
         Owner ownerThree = new Owner();
