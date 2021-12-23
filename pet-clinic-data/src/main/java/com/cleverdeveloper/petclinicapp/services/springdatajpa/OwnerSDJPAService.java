@@ -12,6 +12,7 @@ import com.cleverdeveloper.petclinicapp.repositories.OwnerRepository;
 import com.cleverdeveloper.petclinicapp.repositories.PetRepository;
 import com.cleverdeveloper.petclinicapp.repositories.PetTypeRepository;
 import com.cleverdeveloper.petclinicapp.services.OwnerService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -20,6 +21,7 @@ import java.util.Set;
 
 // Owner Spring DATA JPA SERVICE
 @Service
+@Profile("springdatajpa")
 public class OwnerSDJPAService implements OwnerService {
     private final OwnerRepository ownerRepository;
     private final PetRepository petRepository;

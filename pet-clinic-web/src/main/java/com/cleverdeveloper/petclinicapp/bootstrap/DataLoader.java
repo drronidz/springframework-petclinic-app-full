@@ -8,10 +8,7 @@ DATE : 12/21/2021 10:39 PM
 */
 
 import com.cleverdeveloper.petclinicapp.model.*;
-import com.cleverdeveloper.petclinicapp.services.OwnerService;
-import com.cleverdeveloper.petclinicapp.services.PetTypeService;
-import com.cleverdeveloper.petclinicapp.services.SpecialtyService;
-import com.cleverdeveloper.petclinicapp.services.VetService;
+import com.cleverdeveloper.petclinicapp.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -24,12 +21,20 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
+    public DataLoader (
+            OwnerService ownerService,
+            VetService vetService,
+            PetTypeService petTypeService,
+            SpecialtyService specialtyService,
+            VisitService visitService)
+    {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
 
@@ -73,6 +78,13 @@ public class DataLoader implements CommandLineRunner {
         ownerOne.getPets().add(tomsPet);
 
         ownerService.save(ownerOne);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(tomsPet);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Sneeze Kitty");
+
+        visitService.save(catVisit);
 
         Owner ownerTwo = new Owner();
         ownerTwo.setFirstName("Jeff");

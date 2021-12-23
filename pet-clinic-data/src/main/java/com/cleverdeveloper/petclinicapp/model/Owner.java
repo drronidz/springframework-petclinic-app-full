@@ -15,13 +15,13 @@ import java.util.Set;
 @Table(name = "owner")
 public class Owner extends Person{
 
-    @Column("address")
+    @Column(name = "address")
     private String address;
 
-    @Column("city")
+    @Column(name = "city")
     private String city;
 
-    @Column("phone")
+    @Column(name = "phone")
     private String phone;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
