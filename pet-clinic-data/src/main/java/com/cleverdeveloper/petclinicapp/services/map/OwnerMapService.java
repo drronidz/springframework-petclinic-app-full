@@ -12,11 +12,13 @@ import com.cleverdeveloper.petclinicapp.model.Pet;
 import com.cleverdeveloper.petclinicapp.services.OwnerService;
 import com.cleverdeveloper.petclinicapp.services.PetService;
 import com.cleverdeveloper.petclinicapp.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetTypeService petTypeService;

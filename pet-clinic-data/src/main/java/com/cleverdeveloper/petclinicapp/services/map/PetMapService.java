@@ -10,11 +10,13 @@ DATE : 12/21/2021 9:48 PM
 import com.cleverdeveloper.petclinicapp.model.Pet;
 import com.cleverdeveloper.petclinicapp.services.CrudService;
 import com.cleverdeveloper.petclinicapp.services.PetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class PetMapService extends AbstractMapService<Pet, Long> implements PetService {
 
     @Override
