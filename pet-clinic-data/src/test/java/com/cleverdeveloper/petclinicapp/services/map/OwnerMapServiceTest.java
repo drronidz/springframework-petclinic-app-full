@@ -1,7 +1,6 @@
 package com.cleverdeveloper.petclinicapp.services.map;
 
 import com.cleverdeveloper.petclinicapp.model.Owner;
-import com.cleverdeveloper.petclinicapp.model.Pet;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
