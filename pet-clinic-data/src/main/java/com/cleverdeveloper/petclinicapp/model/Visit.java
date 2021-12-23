@@ -7,20 +7,29 @@ Author Name : @ DRRONIDZ
 DATE : 12/22/2021 3:16 PM
 */
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "visit")
 public class Visit extends BaseEntity{
 
-    private LocalDate data;
+    @Column(name = "date")
+    private LocalDate date;
+
+    @Column(name = "description")
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public String getDescription() {
