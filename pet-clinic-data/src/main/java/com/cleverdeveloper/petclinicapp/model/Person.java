@@ -7,10 +7,15 @@ Author Name : @ DRRONIDZ
 DATE : 12/21/2021 2:06 PM
 */
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
+@Getter
+@Setter
 public class Person extends BaseEntity{
 
     @Column(name = "first_name")
@@ -19,19 +24,4 @@ public class Person extends BaseEntity{
     @Column(name = "last_name")
     private String lastName;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 }
