@@ -7,9 +7,16 @@ Author Name : @ DRRONIDZ
 DATE : 12/21/2021 2:06 PM
 */
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class Person extends BaseEntity{
 
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
 
     public String getFirstName() {

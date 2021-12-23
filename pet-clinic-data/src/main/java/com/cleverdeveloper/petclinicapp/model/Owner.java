@@ -7,14 +7,24 @@ Author Name : @ DRRONIDZ
 DATE : 12/21/2021 2:08 PM
 */
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "owner")
 public class Owner extends Person{
 
+    @Column("address")
     private String address;
+
+    @Column("city")
     private String city;
+
+    @Column("phone")
     private String phone;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets = new HashSet<>();
 
     public String getAddress() {
