@@ -7,8 +7,8 @@ Author Name : @ DRRONIDZ
 DATE : 12/21/2021 2:24 PM
 */
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,8 +16,11 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
-@Getter
 @Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 @MappedSuperclass
 public class BaseEntity implements Serializable {
 
@@ -25,6 +28,6 @@ public class BaseEntity implements Serializable {
     //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    public Long id;
 
 }

@@ -8,6 +8,7 @@ DATE : 12/21/2021 2:09 PM
 */
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
 @Table(name = "pet")
 public class Pet extends BaseEntity{

@@ -8,6 +8,7 @@ DATE : 12/21/2021 2:08 PM
 */
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -17,7 +18,7 @@ import java.util.Set;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
 @Table(name = "owner")
 public class Owner extends Person{

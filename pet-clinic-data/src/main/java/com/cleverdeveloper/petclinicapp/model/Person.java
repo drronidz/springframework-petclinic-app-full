@@ -7,15 +7,17 @@ Author Name : @ DRRONIDZ
 DATE : 12/21/2021 2:06 PM
 */
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
-@Getter
 @Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@SuperBuilder
 public class Person extends BaseEntity{
 
     @Column(name = "first_name")
