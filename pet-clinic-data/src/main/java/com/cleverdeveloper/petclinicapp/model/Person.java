@@ -18,6 +18,7 @@ import javax.persistence.MappedSuperclass;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@MappedSuperclass
 public class Person extends BaseEntity{
 
     @Column(name = "first_name")
