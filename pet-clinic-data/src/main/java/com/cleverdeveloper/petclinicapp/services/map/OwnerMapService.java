@@ -9,17 +9,20 @@ DATE : 12/21/2021 9:41 PM
 
 import com.cleverdeveloper.petclinicapp.model.Owner;
 import com.cleverdeveloper.petclinicapp.model.Pet;
+import com.cleverdeveloper.petclinicapp.repositories.OwnerRepository;
 import com.cleverdeveloper.petclinicapp.services.OwnerService;
 import com.cleverdeveloper.petclinicapp.services.PetService;
 import com.cleverdeveloper.petclinicapp.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
 @Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
+
 
     private final PetTypeService petTypeService;
     private final PetService petService;
@@ -36,6 +39,12 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
                 .filter(owner -> owner.getLastName().equalsIgnoreCase(lastName))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+        // TODO - Implementation
+        return null;
     }
 
     @Override
