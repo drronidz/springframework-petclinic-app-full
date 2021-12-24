@@ -53,7 +53,7 @@ public class OwnerController {
     public String processFindForm(Owner owner, BindingResult result, Model model) {
         // Allow parameterless GET request for /owners to return all records
         if (owner.getLastName() == null) {
-            owner.setLastName("");
+            owner.setLastName(""); // empty String signifies broadest possible search
         }
 
         // find owners by lastName
@@ -75,6 +75,8 @@ public class OwnerController {
             return "owners/ownersList";
         }
     }
+
+
 
     @GetMapping("/{ownerId}")
     public ModelAndView displayOwner(@PathVariable("ownerId") Long ownerId) {
