@@ -43,6 +43,9 @@ public class Pet extends BaseEntity{
 
     @Override
     public String toString() {
-        return "{"+ petType.getName() + "," + name + "}";
+        if (petType != null) {
+            return "{"+ petType.getName() + "," + name + "}";
+        }
+        return "null";
     }
 }
