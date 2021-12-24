@@ -70,21 +70,44 @@ public class DataLoader implements CommandLineRunner {
         ownerOne.setCity("New York");
         ownerOne.setPhone("0779616727");
 
-        Pet tomsPet = new Pet();
-        tomsPet.setPetType(toSaveCat);
-        tomsPet.setOwner(ownerOne);
-        tomsPet.setBirthDate(LocalDate.now());
-        tomsPet.setName("Baguira");
-        ownerOne.getPets().add(tomsPet);
+        Pet tomsPetOne = new Pet();
+        tomsPetOne.setPetType(toSaveCat);
+        tomsPetOne.setOwner(ownerOne);
+        tomsPetOne.setBirthDate(LocalDate.now());
+        tomsPetOne.setName("Baguira");
+        ownerOne.getPets().add(tomsPetOne);
+
+        Pet tomsPetTwo = new Pet();
+        tomsPetTwo.setPetType(toSaveCat);
+        tomsPetTwo.setOwner(ownerOne);
+        tomsPetTwo.setBirthDate(LocalDate.now());
+        tomsPetTwo.setName("Luna");
+        ownerOne.getPets().add(tomsPetTwo);
 
         ownerService.save(ownerOne);
 
-        Visit catVisit = new Visit();
-        catVisit.setPet(tomsPet);
-        catVisit.setDate(LocalDate.now());
-        catVisit.setDescription("Sneeze Kitty");
+        Visit catOneVisitOne = new Visit();
+        catOneVisitOne.setPet(tomsPetOne);
+        catOneVisitOne.setDate(LocalDate.now());
+        catOneVisitOne.setDescription("Sneeze Kitty");
 
-        visitService.save(catVisit);
+        visitService.save(catOneVisitOne);
+
+        Visit catOneVisitTwo = new Visit();
+        catOneVisitTwo.setPet(tomsPetOne);
+        catOneVisitTwo.setDate(LocalDate.now());
+        catOneVisitTwo.setDescription("Sneeze Kitty");
+
+        visitService.save(catOneVisitTwo);
+
+        Visit catTwoVisitOne = new Visit();
+        catTwoVisitOne.setPet(tomsPetTwo);
+        catTwoVisitOne.setDate(LocalDate.now());
+        catTwoVisitOne.setDescription("Sneeze Kitty");
+
+        visitService.save(catTwoVisitOne);
+
+
 
         Owner ownerTwo = new Owner();
         ownerTwo.setFirstName("Jeff");
