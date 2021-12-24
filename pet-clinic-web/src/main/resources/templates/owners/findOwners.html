@@ -15,10 +15,12 @@
         <div class="col">
           <input type="text" id="input" class="form-control" th:field="*{lastName}" aria-describedby="lastNameHelpInline">
         </div>
-        <div class="col-auto">
-    <span id="lastNameHelpInline" class="form-text" th:if="${#fields.hasAnyErrors()}">
-      <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
-    </span>
+        <div class="row py-2">
+          <div class="col-auto">
+          <span id="lastNameHelpInline" class="form-text" th:if="${#fields.hasAnyErrors()}">
+            <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
+          </span>
+          </div>
         </div>
       </div>
       <button type="submit" class="btn btn-primary">Find Owner</button>
