@@ -15,6 +15,8 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.beans.PropertyEditorSupport;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -54,14 +56,25 @@ public class PetController {
     @InitBinder("owner")
     public void initOwnerBinder(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
+
+        dataBinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
+            @Override
+            public void setAsText(String text) throws IllegalArgumentException{
+                setValue(LocalDate.parse(text));
+            }
+        });
     }
 
-    @GetMapping("/pets/new")
-    public String initCreationForm(Owner owner, Model model) {
+    @ModelAttribute("pet")
+    public Pet loadPet(@Valid Owner owner) {
         Pet pet = new Pet();
         owner.getPets().add(pet);
         pet.setOwner(owner); // Giving the pet an Owner (Dependency Injection Pet->Owner)
-        model.addAttribute("pet", pet);
+        return pet;
+    }
+
+    @GetMapping("/pets/new")
+    public String initCreationForm() {
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
 
