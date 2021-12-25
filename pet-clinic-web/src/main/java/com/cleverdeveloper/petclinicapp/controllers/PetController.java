@@ -57,8 +57,11 @@ public class PetController {
     }
 
     @GetMapping("/pets/new")
-    public String initCreationForm(Model model) {
-        model.addAttribute("pet", Pet.builder().build());
+    public String initCreationForm(Owner owner, Model model) {
+        Pet pet = new Pet();
+        owner.getPets().add(pet);
+        pet.setOwner(owner); // Giving the pet an Owner (Dependency Injection Pet->Owner)
+        model.addAttribute("pet", pet);
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
 
@@ -68,7 +71,8 @@ public class PetController {
             result.rejectValue("name", "duplicate", "already exists");
         }
 
-        owner.getPets().add(pet);
+//        owner.getPets().add(pet); // Giving the owner a pet (Dependency Injection Owner-Pet)
+//        pet.setOwner(owner); // Giving the pet an Owner (Dependency Injection Pet->Owner)
 
         if (result.hasErrors()) {
             model.addAttribute("pet", pet);
