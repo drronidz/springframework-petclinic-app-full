@@ -83,14 +83,21 @@ class PetControllerTest {
     }
 
     @Test
-    void initCreationForm() throws Exception {
+    void loadPetTest() throws Exception {
         when(ownerService.findById(anyLong())).thenReturn(owner);
-        when(petTypeService.findAll()).thenReturn(petTypes);
-
         mockMvc.perform(MockMvcRequestBuilders.get("/owners/1/pets/new"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("owner"))
                 .andExpect(model().attributeExists("pet"))
+                .andExpect(view().name("pets/createOrUpdatePetForm"));
+    }
+
+    @Test
+    void initCreationForm() throws Exception {
+        when(ownerService.findById(anyLong())).thenReturn(owner);
+        when(petTypeService.findAll()).thenReturn(petTypes);
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners/1/pets/new"))
+                .andExpect(status().isOk())
                 .andExpect(view().name("pets/createOrUpdatePetForm"));
     }
 
