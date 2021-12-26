@@ -9,9 +9,10 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th style="width: 150px;">ID</th>
+                <th style="width: 20px;">ID</th>
                 <th style="width: 150px;">First Name</th>
                 <th style="width: 150px;">Last Name</th>
+                <th style="width: 150px;">Specialties</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,12 @@
                 <td th:text="${vet?.id}">1</td>
                 <td th:text="${vet?.firstName}">Adam</td>
                 <td th:text="${vet?.lastName}">Stevenson</td>
+                <td>
+                    <div th:each="specialty: ${vet.specialties}">
+                        <span th:text="${specialty.description}">Specialty Description</span>
+                        <span th:if="${vet.getSpecialties().size() == 0 }">none</span>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>
