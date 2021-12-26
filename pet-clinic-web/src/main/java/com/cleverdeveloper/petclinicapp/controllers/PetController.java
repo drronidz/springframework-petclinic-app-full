@@ -8,7 +8,6 @@ import com.cleverdeveloper.petclinicapp.services.PetService;
 import com.cleverdeveloper.petclinicapp.services.PetTypeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -18,8 +17,6 @@ import javax.validation.Valid;
 import java.beans.PropertyEditorSupport;
 import java.time.LocalDate;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 /*
 PROJECT NAME : pet-clinic-app
@@ -53,48 +50,59 @@ public class PetController {
         return ownerService.findById(ownerId);
     }
 
+
+
     @InitBinder("owner")
     public void initOwnerBinder(WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
-
-        dataBinder.registerCustomEditor(LocalDate.class, new PropertyEditorSupport() {
-            @Override
-            public void setAsText(String text) throws IllegalArgumentException{
-                setValue(LocalDate.parse(text));
-            }
-        });
-    }
-
-    @ModelAttribute("pet")
-    public Pet loadPet(@Valid Owner owner) {
-        Pet pet = new Pet();
-        owner.getPets().add(pet);
-        pet.setOwner(owner); // Giving the pet an Owner (Dependency Injection Pet->Owner)
-        return pet;
     }
 
     @GetMapping("/pets/new")
-    public String initCreationForm() {
+    public String initCreationForm(Owner owner, Model model) {
+        Pet pet = new Pet();
+        owner.getPets().add(pet);
+        pet.setOwner(owner);
+        model.addAttribute("pet", pet);
         return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
     }
 
     @PostMapping("/pets/new")
     public String processCreationForm(Owner owner, @Valid Pet pet, BindingResult result, Model model) {
-        if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null) {
+        if (StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) != null){
             result.rejectValue("name", "duplicate", "already exists");
         }
+        owner.getPets().add(pet);
+        if (result.hasErrors()) {
+            model.addAttribute("pet", pet);
+            return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+        } else {
+            petService.save(pet);
 
-//        owner.getPets().add(pet); // Giving the owner a pet (Dependency Injection Owner-Pet)
-//        pet.setOwner(owner); // Giving the pet an Owner (Dependency Injection Pet->Owner)
+            return "redirect:/owners/" + owner.getId();
+        }
+    }
 
+
+    @GetMapping("/pets/{petId}/edit")
+    public String initUpdateForm(@PathVariable Long petId, Model model, Owner owner) {
+        Pet pet = petService.findById(petId);
+        pet.setOwner(owner);
+        model.addAttribute("pet", pet);
+        return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/pets/{petId}/edit")
+    public String processUpdateForm(@Valid Pet pet, BindingResult result, Owner owner, Model model) {
+//        pet.setOwner(owner);
         if (result.hasErrors()) {
             model.addAttribute("pet", pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FORM;
         }
         else {
-
-            petService.save(pet);
+            Pet managedPet = petService.save(pet);
+            owner.getPets().add(managedPet);
             return "redirect:/owners/" + owner.getId();
         }
     }
+
 }
